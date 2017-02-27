@@ -7,15 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1805581F1E56E18400D26246 /* JSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1805581E1E56E18400D26246 /* JSBridge.m */; };
+		1805585C1E5BDEA300D26246 /* Tester.m in Sources */ = {isa = PBXBuildFile; fileRef = 1805585B1E5BDEA300D26246 /* Tester.m */; };
 		181B22431E4AB4EE00AD4844 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B22421E4AB4EE00AD4844 /* main.m */; };
 		181B22461E4AB4EE00AD4844 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B22451E4AB4EE00AD4844 /* AppDelegate.m */; };
 		181B22491E4AB4EE00AD4844 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B22481E4AB4EE00AD4844 /* ViewController.m */; };
 		181B224C1E4AB4EE00AD4844 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 181B224A1E4AB4EE00AD4844 /* Main.storyboard */; };
 		181B224E1E4AB4EE00AD4844 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 181B224D1E4AB4EE00AD4844 /* Assets.xcassets */; };
 		181B22511E4AB4EE00AD4844 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 181B224F1E4AB4EE00AD4844 /* LaunchScreen.storyboard */; };
+		18BCACF41E520AAC0086364A /* TController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BCACF31E520AAC0086364A /* TController.m */; };
+		18BCACF61E520D340086364A /* TView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BCACF51E520D340086364A /* TView.xib */; };
+		D0FE14A30B57FE817D9190F0 /* libPods-testios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71263F0BC85BF784C272593 /* libPods-testios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		150EC2696A1490200973D32C /* Pods-testios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testios.release.xcconfig"; path = "Pods/Target Support Files/Pods-testios/Pods-testios.release.xcconfig"; sourceTree = "<group>"; };
+		1805581D1E56E18400D26246 /* JSBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBridge.h; sourceTree = "<group>"; };
+		1805581E1E56E18400D26246 /* JSBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBridge.m; sourceTree = "<group>"; };
+		1805585A1E5BDEA300D26246 /* Tester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tester.h; sourceTree = "<group>"; };
+		1805585B1E5BDEA300D26246 /* Tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tester.m; sourceTree = "<group>"; };
 		181B223E1E4AB4EE00AD4844 /* testios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		181B22421E4AB4EE00AD4844 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		181B22441E4AB4EE00AD4844 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +36,11 @@
 		181B224D1E4AB4EE00AD4844 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		181B22501E4AB4EE00AD4844 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		181B22521E4AB4EE00AD4844 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18BCACF21E520AAC0086364A /* TController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TController.h; sourceTree = "<group>"; };
+		18BCACF31E520AAC0086364A /* TController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TController.m; sourceTree = "<group>"; };
+		18BCACF51E520D340086364A /* TView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TView.xib; sourceTree = "<group>"; };
+		96A521D1A098AD8C6B0E4DD9 /* Pods-testios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-testios/Pods-testios.debug.xcconfig"; sourceTree = "<group>"; };
+		B71263F0BC85BF784C272593 /* libPods-testios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-testios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +48,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FE14A30B57FE817D9190F0 /* libPods-testios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1805581C1E56E16C00D26246 /* JSBridge */ = {
+			isa = PBXGroup;
+			children = (
+				1805581D1E56E18400D26246 /* JSBridge.h */,
+				1805581E1E56E18400D26246 /* JSBridge.m */,
+			);
+			name = JSBridge;
+			sourceTree = "<group>";
+		};
+		180558591E5BDE6F00D26246 /* Tester */ = {
+			isa = PBXGroup;
+			children = (
+				1805585A1E5BDEA300D26246 /* Tester.h */,
+				1805585B1E5BDEA300D26246 /* Tester.m */,
+			);
+			name = Tester;
+			sourceTree = "<group>";
+		};
 		181B22351E4AB4EE00AD4844 = {
 			isa = PBXGroup;
 			children = (
 				181B22401E4AB4EE00AD4844 /* testios */,
 				181B223F1E4AB4EE00AD4844 /* Products */,
+				DFE2E1AB39470AE11F3EA44D /* Pods */,
+				5A782706A8D3DEF0B4B9B486 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +94,11 @@
 		181B22401E4AB4EE00AD4844 /* testios */ = {
 			isa = PBXGroup;
 			children = (
+				180558591E5BDE6F00D26246 /* Tester */,
+				1805581C1E56E16C00D26246 /* JSBridge */,
 				181B22441E4AB4EE00AD4844 /* AppDelegate.h */,
+				18BCACF21E520AAC0086364A /* TController.h */,
+				18BCACF31E520AAC0086364A /* TController.m */,
 				181B22451E4AB4EE00AD4844 /* AppDelegate.m */,
 				181B22471E4AB4EE00AD4844 /* ViewController.h */,
 				181B22481E4AB4EE00AD4844 /* ViewController.m */,
@@ -66,6 +106,7 @@
 				181B224D1E4AB4EE00AD4844 /* Assets.xcassets */,
 				181B224F1E4AB4EE00AD4844 /* LaunchScreen.storyboard */,
 				181B22521E4AB4EE00AD4844 /* Info.plist */,
+				18BCACF51E520D340086364A /* TView.xib */,
 				181B22411E4AB4EE00AD4844 /* Supporting Files */,
 			);
 			path = testios;
@@ -79,6 +120,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5A782706A8D3DEF0B4B9B486 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B71263F0BC85BF784C272593 /* libPods-testios.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFE2E1AB39470AE11F3EA44D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96A521D1A098AD8C6B0E4DD9 /* Pods-testios.debug.xcconfig */,
+				150EC2696A1490200973D32C /* Pods-testios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +144,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 181B22551E4AB4EE00AD4844 /* Build configuration list for PBXNativeTarget "testios" */;
 			buildPhases = (
+				981F118F2162A24A176C844D /* [CP] Check Pods Manifest.lock */,
 				181B223A1E4AB4EE00AD4844 /* Sources */,
 				181B223B1E4AB4EE00AD4844 /* Frameworks */,
 				181B223C1E4AB4EE00AD4844 /* Resources */,
+				E7E883EEDF3ABC0B689A8452 /* [CP] Embed Pods Frameworks */,
+				C437C1DA50C06B72C41E055B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				181B22511E4AB4EE00AD4844 /* LaunchScreen.storyboard in Resources */,
+				18BCACF61E520D340086364A /* TView.xib in Resources */,
 				181B224E1E4AB4EE00AD4844 /* Assets.xcassets in Resources */,
 				181B224C1E4AB4EE00AD4844 /* Main.storyboard in Resources */,
 			);
@@ -145,13 +207,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		981F118F2162A24A176C844D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C437C1DA50C06B72C41E055B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-testios/Pods-testios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7E883EEDF3ABC0B689A8452 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-testios/Pods-testios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		181B223A1E4AB4EE00AD4844 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BCACF41E520AAC0086364A /* TController.m in Sources */,
 				181B22491E4AB4EE00AD4844 /* ViewController.m in Sources */,
+				1805581F1E56E18400D26246 /* JSBridge.m in Sources */,
 				181B22461E4AB4EE00AD4844 /* AppDelegate.m in Sources */,
+				1805585C1E5BDEA300D26246 /* Tester.m in Sources */,
 				181B22431E4AB4EE00AD4844 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +383,7 @@
 		};
 		181B22561E4AB4EE00AD4844 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96A521D1A098AD8C6B0E4DD9 /* Pods-testios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = testios/Info.plist;
@@ -281,6 +395,7 @@
 		};
 		181B22571E4AB4EE00AD4844 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 150EC2696A1490200973D32C /* Pods-testios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = testios/Info.plist;
@@ -309,6 +424,7 @@
 				181B22571E4AB4EE00AD4844 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

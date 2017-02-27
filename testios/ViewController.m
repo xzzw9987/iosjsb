@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Masonry.h"
+#import "TController.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    UIViewController* controller = [[TController alloc]initWithNibName:@"TView" bundle:[NSBundle mainBundle]];
+    /* do something evil */
+    
+    // this will make controller react to touch event
+    
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    
+    [controller.view setBackgroundColor:[UIColor redColor]];
+    //        [self presentViewController:controller animated:YES completion:^{}] ;
+    
 }
 
 
@@ -25,5 +38,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)becomeFirstResponder {
+    return YES;
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Touch View conttroller");
+};
 
 @end
