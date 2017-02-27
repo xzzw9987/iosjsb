@@ -27,6 +27,9 @@
          managedValueWithValue:[JSValue valueWithObject:self inContext:_context]
          andOwner:_context.virtualMachine];
         
+        
+        
+        
         _context[@"log"] = ^(id message) {
             getSelf(selfValue, myClass);
             [__self performSelector:@selector(log:) withObject:message];
