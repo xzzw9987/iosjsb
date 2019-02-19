@@ -49,6 +49,7 @@
 
 @interface TController() {
     Student* _student ;
+    JSBridge *bridge;
 }
 
 @end
@@ -67,7 +68,7 @@
     
     [_student setValue:@"abc" forKeyPath:@"studentID"];
     
-    JSBridge* bridge = [[JSBridge alloc]initWithJSContext:[[JSContext alloc]init]];
+    bridge = [[JSBridge alloc]initWithJSContext:[[JSContext alloc]init]];
 }
 
 -(BOOL)becomeFirstResponder {

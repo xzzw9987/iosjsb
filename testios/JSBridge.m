@@ -7,6 +7,7 @@
 //
 
 #import "JSBridge.h"
+#import "Test.h"
 #define getSelf(instance, whichClass) id __self = [[instance value]toObjectOfClass:whichClass]
 
 @interface JSBridge() {
@@ -14,54 +15,132 @@
 }
 @end
 
+typedef id(^Blk)(void);
+
+NSString* convertMethodName(NSString *methodName) {
+    return [methodName stringByReplacingOccurrencesOfString:@"_" withString:@":"];
+}
+
+typedef enum TargetType {
+    TargetType_Clazz,
+    TargetType_Instance,
+    TargetType_Nothing
+} TargetType;
+
+TargetType targetType(id target) {
+    Class clz = object_getClass(target);
+    if (nil == clz) return TargetType_Nothing;
+    if (class_isMetaClass(clz)) {
+        return TargetType_Clazz;
+    }
+    else {
+        return TargetType_Instance;
+    }
+}
+
 @implementation JSBridge
 
 -(instancetype)initWithJSContext:(JSContext *)context {
     if(self = [super init]) {
         _context = context;
-        
-        Class myClass = [self class];
-        
-        JSManagedValue* selfValue =
-        [JSManagedValue
-         managedValueWithValue:[JSValue valueWithObject:self inContext:_context]
-         andOwner:_context.virtualMachine];
-        
-        
-        
+        __weak __typeof__(self) weakSelf = self;
         
         _context[@"log"] = ^(id message) {
-            getSelf(selfValue, myClass);
-            [__self performSelector:@selector(log:) withObject:message];
+            __strong __typeof__(weakSelf) self = weakSelf;
+            [self performSelector:@selector(log:) withObject:message];
         };
         
-        _context[@"requireNativeClass"] = ^(NSString* className) {
-            return @{
-                     @"type": @"class",
-                     @"value": className
-                     };
+        _context[@"_requireNativeClass"] = ^(NSString* className) {
+            return objc_getClass([className UTF8String]);
         };
         
-        _context[@"nativeApply"] = ^(id target, NSString* methodName, NSArray* args) {
-            getSelf(selfValue, myClass);
-            return [__self
-                    apply:target
-                    methodName:methodName
-                    args:args];
+        _context[@"_bridge_isMethod"] = ^(id target, NSString *prop) {
+            Method method;
+            switch (targetType(target)) {
+                case TargetType_Clazz:;
+                    method = class_getClassMethod(target, NSSelectorFromString(convertMethodName(prop)));
+                    if (method) {
+                        return YES;
+                    }
+                    return NO;
+                    break;
+                case TargetType_Instance:;
+                    method = class_getInstanceMethod(object_getClass(target), NSSelectorFromString(convertMethodName(prop)));
+                    if (method) {
+                        return YES;
+                    }
+                    return NO;
+                    break;
+                default:;
+                    return NO;
+                    break;
+            }
         };
         
-        [self test];
+        _context[@"_bridge_getMethod"] = ^(id target, NSString *prop) {
+            NSInvocation *invocation;
+            Blk retBlock;
+            TargetType type = targetType(target);
+            if (type == TargetType_Clazz || type == TargetType_Instance) {
+                invocation = [NSInvocation invocationWithMethodSignature:[target methodSignatureForSelector:NSSelectorFromString(convertMethodName(prop))]];
+                invocation.selector = NSSelectorFromString(convertMethodName(prop));
+                invocation.target = target;
+                [invocation retainArguments];
+                retBlock = ^() {
+                    [[JSContext currentArguments]
+                     enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+//                         NSLog(@"xxx: %@", obj);
+                         [invocation setArgument:&obj atIndex:2 + idx];
+                     }];
+                    
+                    __weak id ret;
+                    [invocation invoke];
+                    [invocation getReturnValue:&ret];
+                    return ret;
+                };
+                return retBlock;
+            }
+            else {
+                retBlock = ^() {
+                    return @"";
+                };
+                return retBlock;
+            }
+        };
+        
+        _context[@"_bridge_isProp"] = ^(id target, NSString *prop) {
+            TargetType type = targetType(target);
+            if (type == TargetType_Instance) {
+                objc_property_t p = class_getProperty(object_getClass(target), [prop UTF8String]);
+                if (p) return YES;
+                return NO;
+            }
+            return NO;
+        };
+        
+        _context[@"_bridge_getProp"] = ^(id target, NSString *prop) {
+            TargetType type = targetType(target);
+            id ret;
+            if (type == TargetType_Instance) {
+                return [target valueForKey:prop];
+            }
+            return ret;
+        };
+        
+        NSError *error = nil;
+        NSString* setupJs =
+        [NSString
+         stringWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"setup" ofType:@"js"] encoding:NSUTF8StringEncoding error:&error];
+        
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        else {
+            [_context evaluateScript:setupJs];
+        }
     }
     return self ;
 }
-
--(void)test {
-    [_context
-     evaluateScript:@"try { log(nativeApply(requireNativeClass('NSObject'),'alloc', []) ) } catch (e) {log(e.toString());} "
-     ];
-}
-
-
 
 -(id)apply:(id)descriptor
 methodName:(NSString*)methodName
@@ -97,9 +176,8 @@ methodName:(NSString*)methodName
 
 -(void)log:(id)message {
     
-    NSLog(@"Logging %@", message);
+    NSLog(@"[Logging] %@", message);
 }
-
 
 
 @end
