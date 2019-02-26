@@ -9,8 +9,11 @@
 #import "ViewController.h"
 #import "Masonry.h"
 #import "TController.h"
+#import "JSBridge.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    JSBridge *bridge;
+}
 
 @end
 
@@ -29,6 +32,9 @@
     
     [controller.view setBackgroundColor:[UIColor redColor]];
     //        [self presentViewController:controller animated:YES completion:^{}] ;
+    
+    bridge = [[JSBridge alloc]initWithJSContext:[[JSContext alloc]init] view:controller.view];
+
     
 }
 

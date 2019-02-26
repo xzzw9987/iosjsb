@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <objc/runtime.h>
 #import "Tester.h"
 
 @interface JSBridge : NSObject
--(instancetype)initWithJSContext:(JSContext*)context;
+-(instancetype)initWithJSContext:(JSContext*)context view:(UIView*) view;
 -(id)apply:(id)target methodName:(NSString*)methodName args:(NSArray*)args;
 @end

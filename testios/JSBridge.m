@@ -12,6 +12,7 @@
 
 @interface JSBridge() {
     JSContext* _context ;
+    UIView* _view;
 }
 @end
 
@@ -40,9 +41,11 @@ TargetType targetType(id target) {
 
 @implementation JSBridge
 
--(instancetype)initWithJSContext:(JSContext *)context {
+-(instancetype)initWithJSContext:(JSContext *)context
+                            view:(UIView *)view {
     if(self = [super init]) {
         _context = context;
+        _view = view;
         __weak __typeof__(self) weakSelf = self;
         
         _context[@"log"] = ^(id message) {
@@ -89,11 +92,10 @@ TargetType targetType(id target) {
                 retBlock = ^() {
                     [[JSContext currentArguments]
                      enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-//                         NSLog(@"xxx: %@", obj);
                          [invocation setArgument:&obj atIndex:2 + idx];
                      }];
                     
-                    __weak id ret;
+                    __weak id ret = nil;
                     [invocation invoke];
                     [invocation getReturnValue:&ret];
                     return ret;
@@ -126,6 +128,20 @@ TargetType targetType(id target) {
             }
             return ret;
         };
+        
+        _context[@"_bridge_set"] = ^(id target, NSString *prop, id value) {
+            TargetType type = targetType(target);
+            if (type == TargetType_Instance) {
+                @try {
+                    [target setValue:value forKey:prop];
+                } @catch (NSException *exception) {
+                    NSLog(@"error");
+                }
+            }
+            return value;
+        };
+        
+        _context[@"_view"] = _view;
         
         NSError *error = nil;
         NSString* setupJs =

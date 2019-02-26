@@ -7,6 +7,7 @@
 // _bridge_set
 // _requireNativeClass
 try {
+    const view = createProxy(_view);
     function requireNativeClass(className) {
         log('require native class' + className);
         return createProxy(_requireNativeClass(className));
@@ -22,7 +23,14 @@ try {
             case 'object':
                 return new Proxy(value, {
                                  get(target, prop) {
-                                 return getNativeProp(target, prop);
+                                 if (prop === '_internal_value') {
+                                    return value;
+                                 }
+                                    return getNativeProp(target, prop);
+                                 },
+                                 
+                                 set(target, prop, value) {
+                                    return setNativeProp(target, prop, value);
                                  }
                                  });
         }
@@ -45,13 +53,19 @@ try {
     
     function setNativeProp(target, prop, value) {
         try {
+            let originalValue;
+            if (typeof value === 'object' && (originalValue = value['_internal_value'])) {
+                value = originalValue;
+            }
             return _bridge_set(target, prop, value);
         } catch (e) {}
     }
     
     log('Log works');
-    log(requireNativeClass('Test').staticMethodWithArg_(600));
-    
+    view.backgroundColor = requireNativeClass('UIColor').blueColor();
+  
+ //   log(requireNativeClass('Test').staticMethodWithArg_(600));
+    // instance.instanceProp = 700;
 //    log(
 //        requireNativeClass('Test')
 //        .alloc()

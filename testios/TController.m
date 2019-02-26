@@ -8,7 +8,6 @@
 
 #import "TController.h"
 #import <objc/runtime.h>
-#import "JSBridge.h"
 
 @interface Student:NSObject {
     NSString * _id ;
@@ -49,7 +48,6 @@
 
 @interface TController() {
     Student* _student ;
-    JSBridge *bridge;
 }
 
 @end
@@ -68,7 +66,6 @@
     
     [_student setValue:@"abc" forKeyPath:@"studentID"];
     
-    bridge = [[JSBridge alloc]initWithJSContext:[[JSContext alloc]init]];
 }
 
 -(BOOL)becomeFirstResponder {
